@@ -1,4 +1,4 @@
-interface HeaderProps {
+/*interface HeaderProps {
 showForm: boolean;
 OntogleForm: () =>
 }
@@ -21,4 +21,27 @@ export default function Header(
 
     )
 
+}*/
+
+
+interface HeaderProps {
+  showForm: boolean;
+  onToggleForm: () => void;
+}
+
+export default function Header(
+    { showForm, onToggleForm }: HeaderProps
+) {
+
+    return (
+     <>
+        <header>
+            <h1>hoje eu aprendi</h1>
+            <button onClick={onToggleForm}>
+                {showForm ? 'fechado' : 'compartilhar um fato'}
+            </button>
+        </header>
+    </>
+
+    )
 }
