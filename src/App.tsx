@@ -2,6 +2,9 @@ import Header from "./components/Header"
 import FactList from "./components/FactList"
 import type { Fact } from "./types";
 import { useState } from "react";
+import CategoryFilter from "./components/CategoryFilter";
+
+//import NewItem from "./components/NewItem";
 
 
 const INITIAL_FACTS: Fact[] = [{
@@ -48,13 +51,42 @@ export default function App (){
             setShowForm(showForm => !showForm)
         }
 
+        function handleSelectCategory (category:string){
+            setCurrentCategory(category);
+        }
+
+    // function addNewItem (){
+    //     setFacts([...facts, {
+    //         id:4,
+    //         text: 'Neymar foi convocado',
+    //         source: 'https://www.cbf.com.br',
+    //         category:' entertaimenent',
+    //         votes_interesting:22,
+    //         votes_minblowing: 5,
+    //         votes_false: 65,
+    //         create_at:'2016-05-19T18:33:321' 
+    //     }]);
+    // }
+
+
+
+
+
     return(
         <>
-            <Header showForm={showForm} onToggleForm={handleToggleForm}/>
+            <Header 
+                showForm={showForm} 
+                onToggleForm={handleToggleForm}
+            />
             {showForm && <p>Aqui conterá um formulário</p>}
             <main>
+                <CategoryFilter
+                currentCategory={currentCategory}
+                onSelectCategory={handleSelectCategory}
+                />
                 <FactList facts={displayedFacts}/>
             </main>
+            {/* <NewItem addNewItem={addNewItem}/> */}
         </>
     )
 }
