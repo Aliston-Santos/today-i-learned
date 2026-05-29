@@ -1,8 +1,9 @@
 import Header from "./components/Header"
 import FactList from "./components/FactList"
 import type { Fact } from "./types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CategoryFilter from "./components/CategoryFilter";
+import NewFactForm from "./components/NewFactForm";
 
 //import NewItem from "./components/NewItem";
 
@@ -53,22 +54,15 @@ export default function App (){
 
         function handleSelectCategory (category:string){
             setCurrentCategory(category);
-        }
+        };
 
-    // function addNewItem (){
-    //     setFacts([...facts, {
-    //         id:4,
-    //         text: 'Neymar foi convocado',
-    //         source: 'https://www.cbf.com.br',
-    //         category:' entertaimenent',
-    //         votes_interesting:22,
-    //         votes_minblowing: 5,
-    //         votes_false: 65,
-    //         create_at:'2016-05-19T18:33:321' 
-    //     }]);
-    // }
+        const inputRef = useRef<HTMLInputElement>(null);
 
-
+        useEffect(() => {   
+            if (showForm) inputRef.current?.focus()
+    
+            
+        }, [showForm])
 
 
 
@@ -78,7 +72,7 @@ export default function App (){
                 showForm={showForm} 
                 onToggleForm={handleToggleForm}
             />
-            {showForm && <p>Aqui conterá um formulário</p>}
+            {showForm && <NewFactForm inputRef={inputRef}/>}
             <main>
                 <CategoryFilter
                 currentCategory={currentCategory}
